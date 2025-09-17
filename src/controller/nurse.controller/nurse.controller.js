@@ -29,8 +29,8 @@ export const getAllData = async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 };
-// Add a nurse
 
+// Add a nurse
 export const addNurse = async (req, res) => {
     const errors = validationResult(req);
     console.log(req.body.licenseNumber);
@@ -83,6 +83,21 @@ export const deleteNurse = async (req, res) => {
         const { id } = req.params;
         await deleteNurseFromDB(id);
         res.json({ message: "Nurse deleted successfully" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+};
+
+
+export const getAllForExport = async (req, res) => {
+    try {
+        const { data, total } = await getAllNursesPaginated(1, Number.MAX_SAFE_INTEGER);
+
+        res.json({
+            total,
+            data,
+        });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Internal Server Error" });

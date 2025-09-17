@@ -1,5 +1,11 @@
 import express from "express";
-import { getAllData, addNurse, editNurse, deleteNurse } from "../controller/nurse.controller/nurse.controller.js";
+import {
+    getAllData,
+    addNurse,
+    editNurse,
+    deleteNurse,
+    getAllForExport
+} from "../controller/nurse.controller/nurse.controller.js";
 import {validateNurseData} from "../utils/BodyValidator.js";
 
 const router = express.Router();
@@ -15,5 +21,9 @@ router.put("/edit/:id",validateNurseData, editNurse);
 
 // Delete nurse by ID
 router.delete("/delete/:id", deleteNurse);
+
+// All data for excel file
+router.get("/export", getAllForExport);
+
 
 export default router;
