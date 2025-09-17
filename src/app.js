@@ -4,7 +4,7 @@ import cors from "cors";
 const app = express();
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://crud-frontend-black-delta.vercel.app/"
+    "https://crud-frontend-black-delta.vercel.app"
 ];
 
 // Middleware
